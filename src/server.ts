@@ -1,5 +1,5 @@
 import { app } from "./app";
 
 (async () => {
-    await app.listen({ port: 3000, host: '0.0.0.0' });
+    await app.listen({ port: Number(process.env.PORT) || 3000, host: '0.0.0.0' });
 })();
