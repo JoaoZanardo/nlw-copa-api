@@ -1,8 +1,8 @@
-import { prisma } from '../lib/prisma';
 import { FastifyInstance } from 'fastify';
+import { userController } from 'src';
 
 export async function userRoutes(app: FastifyInstance) {
     app.get('/users/count', async () => {
-        return { count: await prisma.user.count() };
+        return { count: await userController.count() };
     });
 }
