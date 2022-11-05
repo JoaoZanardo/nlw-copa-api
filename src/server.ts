@@ -1,5 +1,12 @@
-import { app } from "./app";
+import { App } from "./app";
 
-(async () => {
-    await app.listen({ port: Number(process.env.PORT) || 3000, host: '0.0.0.0' });
+(async (): Promise<void> => {
+    try {
+        const server = new App();
+        await server.init();
+        await server.start();
+    } catch (error) {
+        console.log(`Error starting server: ${error}`);
+        process.exit(1);
+    }
 })();

@@ -3,7 +3,7 @@
     "target": "ES2019",
     "moduleResolution": "node",
     "module": "commonjs",
-    "lib": ["ES2019"],
+    "lib": ["DOM"],
     "sourceMap": true,
     "outDir": "dist",
     "strict": true,
@@ -20,12 +20,14 @@
     "baseUrl": ".",
     "rootDirs": [
       "./src",
+      "./test"
     ],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
   "include": [
     "./src/**/*.ts",
+    "./test/**/*.ts"
   ],
   "exclude": [
     "./node_modules/*",
