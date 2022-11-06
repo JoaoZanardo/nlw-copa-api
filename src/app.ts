@@ -1,4 +1,4 @@
-import Fastify, { FastifyInstance, FastifyServerFactory } from "fastify";
+import Fastify, { FastifyInstance } from "fastify";
 import cors from '@fastify/cors';
 import { poolRoutes } from "./routes/poll";
 import { guessRoutes } from "./routes/guess";
@@ -7,12 +7,13 @@ import { gameRoutes } from "./routes/game";
 import { authRoutes } from "./routes/auth";
 import jwt from "@fastify/jwt";
 import { Database } from "./database";
+import dotenv from 'dotenv';
 
 export class App {
     constructor(
         private app: FastifyInstance = Fastify({ logger: true }),
-        private port: number = 3000,
-        private host: string = '0.0.0.0'
+        private port: number = Number(process.env.PORT),
+        private host: string = String(process.env.HOST)
     ) { }
 
     getApp(): FastifyInstance {
@@ -25,12 +26,15 @@ export class App {
     }
 
     async setupFastify(): Promise<void> {
+        dotenv.config();
+        
         await this.app.register(cors, {
             origin: true
         });
 
         await this.app.register(jwt, {
-            secret: 'NLW-COPA'
+            secret: String(process.env.SECRET_JWT_KEY),
+            
         });
     }
 
